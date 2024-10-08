@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { createAppointment, updateAppointment } from "../services/appointmentService";
+import {
+  createAppointment,
+  updateAppointment,
+} from "../services/appointmentService";
 import { getSpecialists } from "../services/specialistService";
 import "./AppointmentForm.css";
 
@@ -23,8 +26,12 @@ interface AppointmentFormProps {
   onClose: () => void;
 }
 
-const AppointmentForm: React.FC<AppointmentFormProps> = ({ appointment, onSubmit, onClose }) => {
-  const [patientName, setPatientName] = useState(appointment?.patientName || "");
+const AppointmentForm: React.FC<AppointmentFormProps> = ({
+  appointment,
+  onSubmit,
+  onClose,
+}) => {
+  const [patientName] = useState(appointment?.patientName || "");
   const [doctorId, setDoctorId] = useState(appointment?.doctorId || 0);
   const [date, setDate] = useState(appointment?.date || "");
   const [reason, setReason] = useState(appointment?.reason || "");
@@ -47,7 +54,12 @@ const AppointmentForm: React.FC<AppointmentFormProps> = ({ appointment, onSubmit
     e.preventDefault();
     try {
       if (appointment && appointment.id) {
-        await updateAppointment(appointment.id, { patientName, doctorId, date, reason });
+        await updateAppointment(appointment.id, {
+          patientName,
+          doctorId,
+          date,
+          reason,
+        });
       } else {
         await createAppointment({ patientName, doctorId, date, reason });
       }
@@ -92,7 +104,11 @@ const AppointmentForm: React.FC<AppointmentFormProps> = ({ appointment, onSubmit
           <button type="submit" className="appointment-button">
             Guardar
           </button>
-          <button type="button" className="appointment-button cancel-button" onClick={onClose}>
+          <button
+            type="button"
+            className="appointment-button cancel-button"
+            onClick={onClose}
+          >
             Cancelar
           </button>
         </div>

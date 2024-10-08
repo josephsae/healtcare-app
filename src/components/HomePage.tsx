@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./HomePage.css";
 import healthcareImage from "../assets/healthcare-image.png";
 import logo from "../assets/healthcare-logo.webp";
@@ -10,8 +10,6 @@ interface HomePageProps {
 }
 
 const HomePage: React.FC<HomePageProps> = ({ isAuthenticated, onLogout }) => {
-  const navigate = useNavigate();
-
   return (
     <div className="homepage">
       <header className="homepage-header">
