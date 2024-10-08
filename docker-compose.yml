@@ -1,0 +1,9 @@
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_OPTIONS: --openssl-legacy-provider
+      REACT_APP_API_URL: http://localhost:8080
+
