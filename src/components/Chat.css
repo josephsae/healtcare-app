@@ -83,3 +83,24 @@
 .send-button:hover {
   background-color: #0056a3;
 }
+
+.back-home-button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #555;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: block;
+  width: 100%;
+  max-width: 150px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.back-home-button:hover {
+  background-color: #333;
+}

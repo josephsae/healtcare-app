@@ -1,11 +1,13 @@
 // src/components/Chat.tsx
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Chat.css";
 
 const Chat: React.FC = () => {
   const [messages, setMessages] = useState<{ sender: string; text: string }[]>([]);
   const [userMessage, setUserMessage] = useState("");
   const [responseIndex, setResponseIndex] = useState(0);
+  const navigate = useNavigate();
 
   const responses = [
     "Hola, ¿en qué puedo ayudarte?",
@@ -17,22 +19,18 @@ const Chat: React.FC = () => {
 
   const handleSendMessage = () => {
     if (userMessage.trim()) {
-      // Agrega el mensaje del usuario
       setMessages((prevMessages) => [
         ...prevMessages,
         { sender: "usuario", text: userMessage },
       ]);
-      
+
       setUserMessage("");
 
-      // Agrega la respuesta del especialista después de un pequeño retraso
       setTimeout(() => {
         setMessages((prevMessages) => [
           ...prevMessages,
           { sender: "especialista", text: responses[responseIndex] },
         ]);
-
-        // Incrementa el índice para la próxima respuesta, evitando que sobrepase el límite
         setResponseIndex((prevIndex) => Math.min(prevIndex + 1, responses.length - 1));
       }, 1000);
     }
@@ -44,6 +42,10 @@ const Chat: React.FC = () => {
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") handleSendMessage();
+  };
+
+  const handleGoHome = () => {
+    navigate("/");
   };
 
   return (
@@ -72,6 +74,9 @@ const Chat: React.FC = () => {
           Enviar
         </button>
       </div>
+      <button onClick={handleGoHome} className="back-home-button">
+        Volver a Inicio
+      </button>
     </div>
   );
 };
